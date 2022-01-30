@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:${MYSQL_VERSION}
+    container_name: ragemp-mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+    restart: always
+
+  ragemp:
+    build:
+      context: ./docker/ragemp
+    container_name: ragemp-server
+    volumes:
+      - ${RAGEMP_CLIENT}:/opt/ragemp-srv/client_packages
+      - ${RAGEMP_SERVER}:/opt/ragemp-srv/packages
+      - ${RAGEMP_MODULES}:/opt/ragemp-srv/node_modules
+      - ./docker/ragemp/conf.json:/opt/ragemp-srv/conf.json
+    ports:
+      - "22005:22005/udp"
+      - "22006:22006"
+    restart: always
+    links:
+      - mysql
