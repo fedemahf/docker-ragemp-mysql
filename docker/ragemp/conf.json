@@ -1,7 +1,6 @@
 {
 	"name" : "RAGE:MP Unofficial Server [TAG]",
 	"gamemode" : "freeroam",
-	"bind": "127.0.0.1",
 	"port": 22005,
 	"maxplayers" : 100,
 	"stream-distance" : 500.0,
