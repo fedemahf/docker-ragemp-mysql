@@ -11,7 +11,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3306:3306"
-    restart: always
+    restart: unless-stopped
 
   ragemp:
     build:
@@ -25,6 +25,6 @@ services:
     ports:
       - "22005:22005/udp"
       - "22006:22006"
-    restart: always
+    restart: unless-stopped
     links:
       - mysql
