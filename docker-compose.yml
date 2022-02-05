@@ -3,7 +3,7 @@ version: '3'
 services:
   mysql:
     image: mysql:${MYSQL_VERSION}
-    container_name: ragemp-mysql
+    container_name: ragemp-db
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
